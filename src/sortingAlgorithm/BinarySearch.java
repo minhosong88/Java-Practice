@@ -12,10 +12,11 @@ public class BinarySearch {
             int j = i; //temp 처럼 치환한다.
             int temp = numbers[i];
             while (j > 0 && (numbers[j-1] > temp)) {
-                numbers[j] = numbers[j - 1];
+                numbers[j] = numbers[j - 1]; //자리 바꾸기
                 j--;
             }
-            numbers[j] = temp; //마지막에 배열 내 위치를 정해준다.
+            //while문을 빠져나왔을 때의 J는 numbers[j-1] > temp 조건이 false일 때, 즉 같거나 클 때.
+            numbers[j] = temp; //빠져나왔을 때의 j 위치에 numbers[i]의 값을 넣어주는 것.
         }
         System.out.print("{");
         for (int i = 0; i < numbers.length; i++) {
@@ -33,7 +34,7 @@ public class BinarySearch {
         int temp = numbers[mid];
         boolean find = false;
 
-        while (left <= right) {
+        while (left <= right) { // in ascending sort, left value is always smaller than or equal to right value.
             if (target == temp) {
                 find = true;
                 break;
