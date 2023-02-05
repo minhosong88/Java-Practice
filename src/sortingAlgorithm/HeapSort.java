@@ -6,7 +6,7 @@ public class HeapSort {
 
     public HeapSort() {
         SIZE = 0;
-        heapArr = new int[50];
+        heapArr = new int[20];
     }
 
     public void insertHeap(int input) {

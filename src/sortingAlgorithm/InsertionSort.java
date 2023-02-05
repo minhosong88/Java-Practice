@@ -6,7 +6,7 @@ public class InsertionSort {
         int i = 0, j = 0;
         int temp = 0;
 
-        for (i = 1; i < count; i++) {
+        for (i = 1; i < count; i++) { // 배열 안의 숫자들이 순서대로 나열되도록 하는 공식이라고 보면 됨. 알고리즘을 공식처럼 외우면 좋을 듯.
             j = i;
             temp = arr[i];
             while ((j>0)&&(arr[j-1]>temp)) {
