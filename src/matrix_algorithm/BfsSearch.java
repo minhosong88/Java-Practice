@@ -1,31 +1,29 @@
-package dfs_bfs;
+package matrix_algorithm;
 
-import java.util.Stack;
+import java.util.ArrayList;
 
-public class DfsSearch { //인접노드 탐색, Stack 활용
+public class BfsSearch { //한 노드에 인접한 모든 노드를 탐색, 큐를 활용
     int count;
     boolean[] visited;
     int[][] matrix;
-    Stack<Integer> stack;
+    ArrayList<Integer> queue;
 
-    public DfsSearch(int count) {
+    public BfsSearch(int count) {
         this.count = count;
         visited = new boolean[count];
-        stack = new Stack<Integer>();
+        queue = new ArrayList<Integer>();
     }
 
-    public void dfsTravers() {
-        stack.push(0);//시작지점 초기화. stack 에 0이 들어가고, visited 로 마킹된 것.
+    public void bfsTraverse() {
+        queue.add(0);
         visited[0] = true;
 
-        while (stack.size() != 0) {
-            int node = stack.pop();
-            System.out.print(node + " "); //하나씩 뺀다.
-
+        while (queue.size() != 0) {
+            int node = queue.remove(0);
+            System.out.print(node + " ");
             for (int j = 0; j < count; j++) {
-                //stack에 넣는 걸 visited 라고 말하고, matrix[node][j]=0이면 연결 안된 것
                 if (matrix[node][j] != 0 && !visited[j]) {
-                    stack.push(j);
+                    queue.add(j);
                     visited[j] = true;
                 }
             }
@@ -36,7 +34,7 @@ public class DfsSearch { //인접노드 탐색, Stack 활용
     public static void main(String[] args) {
         int count = 8;
         UndirectedGraph graph = new UndirectedGraph(count);
-        DfsSearch dfs = new DfsSearch(count);
+        BfsSearch bfs = new BfsSearch(count);
 
         graph.addEgde(0, 1, 1);
         graph.addEgde(0, 2, 1);
@@ -47,10 +45,8 @@ public class DfsSearch { //인접노드 탐색, Stack 활용
         graph.addEgde(4, 5, 1);
         graph.addEgde(3, 7, 1);
 
-        dfs.matrix = graph.getVertexMatrix();
-        dfs.dfsTravers();
-
-
+        bfs.matrix = graph.getVertexMatrix();
+        bfs.bfsTraverse();
     }
 
 }

@@ -1,4 +1,4 @@
-package dfs_bfs;
+package matrix_algorithm;
 
 class MyGraph {
     private int count;
