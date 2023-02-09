@@ -24,11 +24,11 @@ public class PathSearch {
     public static int VISIT = 2;
 
     int[][] markArray = new int[8][8];
-
+    // markArray consists of visit or nonvisit but only prints 'visit'
+    // maze consists of 0 & 1(nonvisit & wall), prints 'wall'.
     public void findPath(int startX, int startY, int endX, int endY) {
         boolean isEmpty = false;
         boolean isFound = false;
-        int i =0;
 
         Move start = new Move(startX, startY); // start point
         start.direction = 0;
@@ -46,9 +46,9 @@ public class PathSearch {
                 if (newX >= 0
                         && newX < WIDTH
                         && newY >= 0
-                        && newY < HEIGHT
-                        && maze.myMaze[newX][newY] == NOTVISIT
-                        && markArray[newX][newY] == NOTVISIT) {
+                        && newY < HEIGHT              //NONVISIT = 0;
+                        && maze.myMaze[newX][newY] == NOTVISIT //because '0's are the path to the exit.
+                        && markArray[newX][newY] == NOTVISIT) { //newly mark the path to markArray.
                     Move newPosition = new Move(newX, newY);
                     newPosition.direction = direction + 1;
                     stack.push(newPosition);
@@ -68,7 +68,8 @@ public class PathSearch {
 
                 } else direction++; // if the conditions don't match, just change direction without move
             }
-            isEmpty = stack.isEmpty(); //return true ot false
+            isEmpty = stack.isEmpty(); //return
+            // true ot false
         }
     }
 
